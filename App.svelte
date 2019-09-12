@@ -1,16 +1,33 @@
 <script>
-	import Button from "./Button.svelte";
+import { onMount } from "svelte";
+import User from "./User.svelte";
+let users;
+
+onMount(() => {
+  getGithubUsers();
+});
+
+function getGithubUsers() {
+  fetch("https://api.github.com/users")
+  .then(resp => resp.json())
+  .then(data => (users = data));
+}
 </script>
 
 <style>
-  main {
-    font-family: sans-serif;
-    text-align: center;
-  }
+ 
 </style>
 
 <main>
-	<h1>Hello CodeSandbox</h1>
-	<h2>Start editing to see some magic happen!</h2>
-	<Button />
+  <h1> This is something</h1>
+{#if users}
+<ul>
+{#each users as user}
+<li> 
+<User username={user.login} avatar={user.avatar_url}/>
+</li>
+{/each}
+</ul>    
+{/if}
+{users}
 </main>
