@@ -15,7 +15,19 @@ function getGithubUsers() {
 </script>
 
 <style>
- 
+ .user-list {
+   display: flex;
+   flex-flow: wrap;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+
+ }
+
+ .user-list li {
+   width: 20%;
+   padding: 10px;
+ }
 </style>
 
 <main>
