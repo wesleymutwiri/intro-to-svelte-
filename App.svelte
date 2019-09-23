@@ -1,6 +1,7 @@
 <script>
 import { onMount } from "svelte";
 import User from "./User.svelte";
+import UserSearch from './UserSearch.svelte';
 let users;
 
 onMount(() => {
@@ -31,6 +32,7 @@ function getGithubUsers() {
 </style>
 
 <main>
+  <UserSearch/>
   <h1> This is something</h1>
 {#if users}
 <ul>

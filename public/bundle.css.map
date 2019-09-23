@@ -1,8 +1,14 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "../User.svelte",
+    "../UserSearch.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\nexport let username;\nexport let avatar;\n</script>\n<style>\n.user {\n    padding: 5px;\n}\n</style>\n<div class=\"user\">\n<img src=\"{avatar}\"  alt=\"{username}'s Avatar\">\n<h3> {username} </h3>\n</div>",
+    "<script>\n    import User from './User.svelte';\n    let usernameQuery = \"\";\n    let user;\n\n    function handleSubmit(e){\n        e.preventDefault();\n\n        fetch(`https://api.github.com/users/${usernameQuery}`)\n        .then(resp => resp.json())\n        .then(data=>(user = data));\n    }\n</script>\n<style>\n.user-search {\n    padding: 20px;\n    border-radius: 10px;\n    margin-bottom: 50px;\n    background: #efefef;\n}\n\nh2 {\n    margin: 0 0 15px;\n}\n</style>\n\n<div class=\"user-search\">\n    <h2>Search for Users </h2>\n    <form on:submit={handleSubmit}>\n        <input type=\"text\" bind:value={usernameQuery}>\n        <button>Search</button>\n    </form>\n    {#if user}\n    <User username={user.login} avatar={user.avatar_url} />\n    {/if}\n</div>"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AAKA,KAAK,cAAC,CAAC,AACH,OAAO,CAAE,GAAG,AAChB,CAAC;ACOD,YAAY,cAAC,CAAC,AACV,OAAO,CAAE,IAAI,CACb,aAAa,CAAE,IAAI,CACnB,aAAa,CAAE,IAAI,CACnB,UAAU,CAAE,OAAO,AACvB,CAAC,AAED,EAAE,cAAC,CAAC,AACA,MAAM,CAAE,CAAC,CAAC,CAAC,CAAC,IAAI,AACpB,CAAC"
 }
